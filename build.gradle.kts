@@ -1,6 +1,5 @@
 plugins {
     id("dev.architectury.loom").version("1.9-SNAPSHOT")
-    id("com.hypherionmc.modutils.modpublisher").version("2.+")
     id("maven-publish")
 }
 
@@ -64,18 +63,4 @@ tasks.withType<ProcessResources> {
     }
 }
 
-publisher {
-    apiKeys.modrinth(System.getenv("MODRINTH_TOKEN"))
-    apiKeys.curseforge(System.getenv("CURSEFORGE_TOKEN"))
 
-    curseID.set("$curseforge_id")
-    modrinthID.set("$modrinth_id")
-    versionType.set("alpha")
-    changelog.set(file("CHANGELOG.md"))
-    displayName.set("${mod_version}+mc${minecraft_version}")
-    gameVersions.set(listOf("1.21", "1.21.1"))
-    loaders.set(listOf(loom.platform.get().id()))
-    projectVersion.set("${mod_version}+mc${minecraft_version}")
-    artifact.set(tasks.remapJar)
-    addAdditionalFile(tasks.remapSourcesJar)
-}
